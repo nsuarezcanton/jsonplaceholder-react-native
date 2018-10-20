@@ -1,4 +1,4 @@
 import AlbumListComponent from './AlbumListComponent';
+import PhotoListComponent from './PhotoListComponent';
 
-// eslint-disable-next-line
-export { AlbumListComponent };
+export { AlbumListComponent, PhotoListComponent };

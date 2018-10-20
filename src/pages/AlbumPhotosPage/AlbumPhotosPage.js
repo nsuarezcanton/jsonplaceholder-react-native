@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SafeAreaView, StyleSheet, Text } from 'react-native';
+import { SafeAreaView, StyleSheet } from 'react-native';
 
+import { PhotoListComponent } from '../../components';
 import { BaseStyles } from '../../styles';
 
 const styles = StyleSheet.create({
@@ -13,7 +14,7 @@ const styles = StyleSheet.create({
 
 const AlbumPhotosPage = ({ navigation: { navigate } }) => (
   <SafeAreaView style={[styles.container]}>
-    <Text onPress={() => navigate('PhotoDetails')}>AlbumPhotosPage</Text>
+    <PhotoListComponent onTapItem={() => navigate('PhotoDetails')} />
   </SafeAreaView>
 );
 
