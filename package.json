@@ -1,0 +1,94 @@
+{
+  "name": "JSONPlaceholder",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "yarn test:unit && yarn test:ios:release",
+    "precommit": "lint-staged",
+    "lint": "eslint src --ext .js --cache",
+    "test:ios": "detox build -c ios.sim.debug && detox test -c ios.sim.debug",
+    "test:android": "detox build -c android.emu.debug && detox test -c android.emu.debug -l verbose",
+    "test:unit": "jest . --config=./test_config/jest_config.json"
+  },
+  "dependencies": {
+    "prop-types": "15.6.0",
+    "react": "16.6.0-alpha.8af6728",
+    "react-native": "0.57.3",
+    "react-native-i18n": "2.0.12",
+    "react-native-vector-icons": "4.5.0",
+    "react-redux": "5.0.6",
+    "redux": "3.7.2",
+    "redux-actions": "2.2.1",
+    "redux-mock-store": "1.5.1",
+    "redux-persist": "5.6.10",
+    "redux-thunk": "2.2.0",
+    "reselect": "3.0.1"
+  },
+  "devDependencies": {
+    "babel-eslint": "8.2.3",
+    "babel-jest": "23.6.0",
+    "detox": "7.3.7",
+    "enzyme": "3.3.0",
+    "enzyme-adapter-react-16": "1.1.1",
+    "enzyme-to-json": "3.3.4",
+    "eslint": "^5.7.0",
+    "eslint-config-airbnb-base": "12.1.0",
+    "eslint-config-prettier": "2.9.0",
+    "eslint-plugin-import": "2.12.0",
+    "eslint-plugin-prettier": "2.6.0",
+    "eslint-plugin-react": "7.8.2",
+    "husky": "0.14.3",
+    "jest": "23.6.0",
+    "lint-staged": "7.1.2",
+    "metro-react-native-babel-preset": "0.48.1",
+    "prettier": "1.13.3",
+    "react-dom": "16.4.0",
+    "react-test-renderer": "16.6.0-alpha.8af6728"
+  },
+  "jest": {
+    "preset": "react-native"
+  },
+  "lint-staged": {
+    "linters": {
+      "src/**/*.{js,json}": [
+        "prettier --write",
+        "git add"
+      ],
+      "src/**/*.js": [
+        "eslint --ext .js --cache"
+      ]
+    }
+  },
+  "detox": {
+    "test-runner": "jest",
+    "runner-config": "./test_config/detox_config.json",
+    "specs": ".",
+    "configurations": {
+      "ios.sim.release": {
+        "binaryPath": "ios/build/Build/Products/Release-iphonesimulator/JSONPlaceholder.app",
+        "build": "export RCT_NO_LAUNCH_PACKAGER=true && xcodebuild -project ios/JSONPlaceholder.xcodeproj -scheme JSONPlaceholder -configuration Release -sdk iphonesimulator -derivedDataPath ios/build -quiet",
+        "type": "ios.simulator",
+        "name": "iPhone 7 Plus"
+      },
+      "ios.sim.debug": {
+        "binaryPath": "ios/build/Build/Products/Debug-iphonesimulator/JSONPlaceholder.app",
+        "build": "xcodebuild -project ios/JSONPlaceholder.xcodeproj -scheme JSONPlaceholder -configuration Debug -sdk iphonesimulator -derivedDataPath ios/build",
+        "type": "ios.simulator",
+        "name": "iPhone 7 Plus"
+      },
+      "android.emu.debug": {
+        "binaryPath": "android/app/build/outputs/apk/debug/app-debug.apk",
+        "build": "pushd android && ./gradlew assembleDebug assembleAndroidTest -DtestBuildType=debug && popd",
+        "type": "android.emulator",
+        "name": "Nexus_5X_API_26"
+      },
+      "android.emu.release": {
+        "binaryPath": "android/app/build/outputs/apk/release/app-release.apk",
+        "build": "pushd android && ./gradlew assembleRelease assembleAndroidTest -DtestBuildType=release && popd",
+        "type": "android.emulator",
+        "name": "Nexus_5X_API_26"
+      }
+    }
+  }
+}
