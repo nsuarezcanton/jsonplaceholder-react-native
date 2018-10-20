@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SafeAreaView, StyleSheet } from 'react-native';
 
-import { PhotoListComponent, NavigationBar } from '../../components';
+import { PhotoList, NavigationBar } from '../../components';
 import { BaseStyles } from '../../styles';
 
 const styles = StyleSheet.create({
@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
 const AlbumPhotosPage = ({ navigation: { navigate, goBack } }) => (
   <SafeAreaView style={[styles.container]}>
     <NavigationBar title="quidem molestiae enim" onTap={() => goBack()} />
-    <PhotoListComponent onTapItem={() => navigate('PhotoDetails')} />
+    <PhotoList onTapItem={() => navigate('PhotoDetails')} />
   </SafeAreaView>
 );
 

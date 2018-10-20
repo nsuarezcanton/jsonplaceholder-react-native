@@ -27,7 +27,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const AlbumListCellComponent = ({ item: { id, title }, onTap }) => (
+const AlbumListCell = ({ item: { id, title }, onTap }) => (
   <TouchableOpacity onPress={() => onTap(id)}>
     <View style={[styles.container]}>
       <View style={[styles.photosContainer]}>
@@ -39,17 +39,17 @@ const AlbumListCellComponent = ({ item: { id, title }, onTap }) => (
           }}
         />
       </View>
-      <Icon name="arrow-right" size={32} color="#000000" />
+      <Icon name="chevron-right" size={32} color="#000000" />
     </View>
     <Text style={[styles.label]}>{title}</Text>
   </TouchableOpacity>
 );
 
-AlbumListCellComponent.propTypes = {
+AlbumListCell.propTypes = {
   item: PropTypes.shape({
     title: PropTypes.string.isRequired,
   }).isRequired,
   onTap: PropTypes.func.isRequired,
 };
 
-export default AlbumListCellComponent;
+export default AlbumListCell;
