@@ -17,6 +17,7 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between',
     paddingRight: BaseStyles.SPACING_BASE,
   },
+  photo: { width: 128, height: 128 },
   label: {
     color: BaseStyles.COLOR_BLACK,
     fontSize: TextStyles.SIZE_MEDIUM,
@@ -30,12 +31,9 @@ const AlbumListCellComponent = ({ item: { id, title }, onTap }) => (
   <TouchableOpacity onPress={() => onTap(id)}>
     <View style={[styles.container]}>
       <View style={[styles.photosContainer]}>
+        <Image style={[styles.photo]} source={{ uri: 'https://via.placeholder.com/150/92c952' }} />
         <Image
-          style={{ width: 128, height: 128 }}
-          source={{ uri: 'https://via.placeholder.com/150/92c952' }}
-        />
-        <Image
-          style={{ width: 128, height: 128 }}
+          style={[styles.photo]}
           source={{
             uri: 'https://via.placeholder.com/150/9c184f',
           }}
