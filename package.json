@@ -92,5 +92,10 @@
         "name": "Nexus_5X_API_26"
       }
     }
+  },
+  "rnpm": {
+    "assets": [
+      "./assets/fonts/"
+    ]
   }
 }
