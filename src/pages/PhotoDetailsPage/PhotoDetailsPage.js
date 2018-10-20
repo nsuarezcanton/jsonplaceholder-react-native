@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import { SafeAreaView, Text, StyleSheet } from 'react-native';
 
+import { NavigationBar } from '../../components';
 import { BaseStyles } from '../../styles';
 
 const styles = StyleSheet.create({
@@ -13,6 +14,7 @@ const styles = StyleSheet.create({
 
 const PhotoDetailsPage = ({ navigation: { goBack } }) => (
   <SafeAreaView style={[styles.container]}>
+    <NavigationBar onTap={() => goBack()} />
     <Text onPress={() => goBack()}>PhotoDetailsPage</Text>
   </SafeAreaView>
 );
