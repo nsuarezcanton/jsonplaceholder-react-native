@@ -58,7 +58,7 @@ const TEST_DATA = [
 ];
 
 const styles = StyleSheet.create({
-  contentContainer: { paddingHorizontal: BaseStyles.SPACING_BASE },
+  contentContainer: { padding: BaseStyles.SPACING_BASE },
   separator: {
     backgroundColor: BaseStyles.COLOR_BLACK,
     flex: 1,
