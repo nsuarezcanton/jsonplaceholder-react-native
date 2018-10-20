@@ -28,7 +28,7 @@ const styles = StyleSheet.create({
   },
 });
 
-const PhotoListCellComponent = ({ item: { id, title }, onTap }) => (
+const PhotoListCell = ({ item: { id, title }, onTap }) => (
   <TouchableOpacity onPress={() => onTap(id)}>
     <View style={[styles.container]}>
       <View style={[styles.photoContainer]}>
@@ -38,17 +38,17 @@ const PhotoListCellComponent = ({ item: { id, title }, onTap }) => (
           resizeMode="cover"
         />
       </View>
-      <Icon name="arrow-right" size={32} color="#000000" />
+      <Icon name="chevron-right" size={BaseStyles.SPACING_LARGE} color={BaseStyles.COLOR_BLACK} />
     </View>
     <Text style={[styles.label]}>{title}</Text>
   </TouchableOpacity>
 );
 
-PhotoListCellComponent.propTypes = {
+PhotoListCell.propTypes = {
   item: PropTypes.shape({
     title: PropTypes.string.isRequired,
   }).isRequired,
   onTap: PropTypes.func.isRequired,
 };
 
-export default PhotoListCellComponent;
+export default PhotoListCell;

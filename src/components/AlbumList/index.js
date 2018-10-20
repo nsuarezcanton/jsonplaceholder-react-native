@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import AlbumListCellComponent from './AlbumListCellComponent';
+import AlbumListCell from './AlbumListCell';
 import { BaseStyles } from '../../styles';
 
 const TEST_DATA = [
@@ -68,17 +68,17 @@ const styles = StyleSheet.create({
   },
 });
 
-const AlbumListComponent = ({ albumList = TEST_DATA, onTapItem }) => (
+const AlbumList = ({ albumList = TEST_DATA, onTapItem }) => (
   <FlatList
     contentContainerStyle={[styles.contentContainer]}
     data={albumList}
     ItemSeparatorComponent={() => <View style={[styles.separator]} />}
     keyExtractor={cellData => String(cellData.id)}
-    renderItem={cellData => <AlbumListCellComponent {...cellData} onTap={onTapItem} />}
+    renderItem={cellData => <AlbumListCell {...cellData} onTap={onTapItem} />}
   />
 );
 
-AlbumListComponent.propTypes = {
+AlbumList.propTypes = {
   albumList: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -88,4 +88,4 @@ AlbumListComponent.propTypes = {
   onTapItem: PropTypes.func.isRequired,
 };
 
-export default AlbumListComponent;
+export default AlbumList;

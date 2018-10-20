@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, FlatList, StyleSheet } from 'react-native';
 import PropTypes from 'prop-types';
-import PhotoListCellComponent from './PhotoListCellComponent';
+import PhotoListCell from './PhotoListCell';
 import { BaseStyles } from '../../styles';
 
 const TEST_DATA = [
@@ -68,17 +68,17 @@ const styles = StyleSheet.create({
   },
 });
 
-const PhotoListComponent = ({ photoList = TEST_DATA, onTapItem }) => (
+const PhotoList = ({ photoList = TEST_DATA, onTapItem }) => (
   <FlatList
     contentContainerStyle={[styles.contentContainer]}
     data={photoList}
     ItemSeparatorComponent={() => <View style={[styles.separator]} />}
     keyExtractor={cellData => String(cellData.id)}
-    renderItem={cellData => <PhotoListCellComponent {...cellData} onTap={onTapItem} />}
+    renderItem={cellData => <PhotoListCell {...cellData} onTap={onTapItem} />}
   />
 );
 
-PhotoListComponent.propTypes = {
+PhotoList.propTypes = {
   photoList: PropTypes.arrayOf(
     PropTypes.shape({
       id: PropTypes.number.isRequired,
@@ -88,4 +88,4 @@ PhotoListComponent.propTypes = {
   onTapItem: PropTypes.func.isRequired,
 };
 
-export default PhotoListComponent;
+export default PhotoList;

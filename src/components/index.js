@@ -1,5 +1,5 @@
-import AlbumListComponent from './AlbumListComponent';
-import PhotoListComponent from './PhotoListComponent';
-import NavigationBar from './NavigationBarComponent';
+import AlbumList from './AlbumList';
+import PhotoList from './PhotoList';
+import NavigationBar from './NavigationBar';
 
-export { AlbumListComponent, PhotoListComponent, NavigationBar };
+export { AlbumList, PhotoList, NavigationBar };
