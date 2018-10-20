@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/EvilIcons';
+import { BaseStyles, TextStyles } from '../../styles';
 
 const styles = StyleSheet.create({
   container: {
@@ -14,13 +15,14 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
-    paddingRight: 24,
+    paddingRight: BaseStyles.SPACING_BASE,
   },
   label: {
-    color: '#000000',
-    fontSize: 16,
-    height: 24,
-    marginTop: 8,
+    color: BaseStyles.COLOR_BLACK,
+    fontSize: TextStyles.SIZE_MEDIUM,
+    fontFamily: TextStyles.FAMILY_PRIMARY_REGULAR,
+    height: BaseStyles.SPACING_BASE,
+    marginTop: BaseStyles.SPACING_TINY,
   },
 });
 
