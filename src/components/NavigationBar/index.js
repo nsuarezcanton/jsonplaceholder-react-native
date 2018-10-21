@@ -14,7 +14,6 @@ const styles = StyleSheet.create({
     fontSize: TextStyles.SIZE_LARGE,
     fontFamily: TextStyles.FAMILY_PRIMARY_BOLD,
     textAlign: 'right',
-    height: BaseStyles.SPACING_BASE,
     marginBottom: BaseStyles.SPACING_TINY,
   },
   separator: {

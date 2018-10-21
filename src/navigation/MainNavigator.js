@@ -1,8 +1,8 @@
-import { StackNavigator } from 'react-navigation';
+import { createStackNavigator } from 'react-navigation';
 
 import { AlbumPhotosPage, AlbumsPage, PhotoDetailsPage } from '../pages';
 
-export const AppNavigator = StackNavigator(
+export const AppNavigator = createStackNavigator(
   {
     Albums: AlbumsPage,
     AlbumPhotos: AlbumPhotosPage,
