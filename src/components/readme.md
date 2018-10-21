@@ -1,3 +1,3 @@
-#Components
+# Components
 
-All components are store here.
+All components are stored here.
