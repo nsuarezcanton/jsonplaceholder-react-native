@@ -17,13 +17,13 @@ A quick Sketch mockup of the complete app to make development easier.
 
 ## Demo
 
-![JSONPlaceholder Demo](/readme_assets/JSONPlaceholder_demo.gif)
+<img src="/readme_assets/JSONPlaceholder_demo.gif" alt="JSONPlaceholder Demo" width="300"/>
 
 ## Getting Started
 
 ### Pre-requisites:
 
-Make sure you have the react-native CLI installed.
+- Make sure you have the react-native CLI installed.
 
 ```
 npm install -g react-native-cli
