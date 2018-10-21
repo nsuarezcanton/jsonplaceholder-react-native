@@ -12,17 +12,29 @@ const styles = StyleSheet.create({
   },
 });
 
-const AlbumPhotosPage = ({ navigation: { navigate, goBack } }) => (
+const AlbumPhotosPage = ({ navigation: { navigate, goBack }, photosByAlbum, albumTitle }) => (
   <SafeAreaView style={[styles.container]}>
-    <NavigationBar title="quidem molestiae enim" onTap={() => goBack()} />
-    <PhotoList onTapItem={() => navigate('PhotoDetails')} />
+    <NavigationBar title={albumTitle} onTap={() => goBack()} />
+    <PhotoList
+      onTapItem={photoId => navigate('PhotoDetails', { photoId })}
+      photoList={photosByAlbum}
+    />
   </SafeAreaView>
 );
 
 AlbumPhotosPage.propTypes = {
+  albumTitle: PropTypes.string.isRequired,
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
+  photosByAlbum: PropTypes.arrayOf(
+    PropTypes.shape({
+      albumId: PropTypes.number.isRequired,
+      id: PropTypes.number.isRequired,
+      thumbnailUrl: PropTypes.string.isRequired,
+      url: PropTypes.string.isRequired,
+    }).isRequired,
+  ),
 };
 
 export default AlbumPhotosPage;
