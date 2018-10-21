@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, StyleSheet, TouchableOpacity, Animated } from 'react-native';
 import PropTypes from 'prop-types';
 import Icon from 'react-native-vector-icons/EvilIcons';
 
@@ -7,7 +7,8 @@ import { BaseStyles, TextStyles } from '../../styles';
 
 const styles = StyleSheet.create({
   container: {
-    paddingHorizontal: BaseStyles.SPACING_BASE,
+    marginTop: BaseStyles.SPACING_TINY,
+    paddingHorizontal: BaseStyles.SPACING_SMALL,
   },
   label: {
     color: BaseStyles.COLOR_BLACK,
@@ -22,29 +23,89 @@ const styles = StyleSheet.create({
   },
 });
 
-const NavigationBar = ({ onTap, title }) => (
-  <View style={[styles.container]}>
-    <TouchableOpacity
-      onPress={() => {
-        if (onTap) {
-          onTap();
-        }
-      }}
-    >
-      <View style={[{ height: BaseStyles.SPACING_LARGE }]}>
-        {onTap && (
-          <Icon name="arrow-left" size={BaseStyles.SPACING_LARGE} color={BaseStyles.COLOR_BLACK} />
+class NavigationBar extends React.Component {
+  constructor() {
+    super();
+    this.state = { titleHeight: undefined };
+  }
+
+  getTitleHeight() {
+    const titleHeight = this.props.scrollY.interpolate({
+      inputRange: [0, 400],
+      outputRange: [this.state.titleHeight, 0],
+      extrapolate: 'clamp',
+    });
+    return titleHeight;
+  }
+
+  getTitleOpacity() {
+    const titleOpacity = this.props.scrollY.interpolate({
+      inputRange: [0, 100],
+      outputRange: [1, 0],
+      extrapolate: 'clamp',
+    });
+    return titleOpacity;
+  }
+
+  render() {
+    const { onTap, title, scrollY } = this.props;
+    return (
+      <View style={[styles.container]}>
+        <View
+          style={[
+            {
+              height: BaseStyles.SPACING_LARGE,
+              width: BaseStyles.SPACING_XLARGE,
+            },
+          ]}
+        >
+          {onTap && (
+            <TouchableOpacity onPress={() => onTap()}>
+              <Icon
+                name="arrow-left"
+                size={BaseStyles.SPACING_LARGE}
+                color={BaseStyles.COLOR_BLACK}
+              />
+            </TouchableOpacity>
+          )}
+        </View>
+
+        {title && (
+          <Animated.Text
+            onLayout={event => {
+              const { height } = event.nativeEvent.layout;
+              const { titleHeight } = this.state;
+              if (!titleHeight || height > this.state.titleHeight) {
+                this.setState({ titleHeight: height });
+              }
+            }}
+            style={[
+              styles.label,
+              {
+                height: scrollY && this.getTitleHeight(),
+                opacity: scrollY && this.getTitleOpacity(),
+              },
+            ]}
+          >
+            {title}
+          </Animated.Text>
         )}
+        <View style={[styles.separator]} />
       </View>
-    </TouchableOpacity>
-    {title && <Text style={[styles.label]}>{title}</Text>}
-    <View style={[styles.separator]} />
-  </View>
-);
+    );
+  }
+}
 
 NavigationBar.propTypes = {
   onTap: PropTypes.func,
   title: PropTypes.string,
+  scrollY: PropTypes.shape({
+    interpolate: PropTypes.func.isRequired,
+  }),
+};
+
+NavigationBar.defaultProps = {
+  scrollY: null,
 };
 
 export default NavigationBar;

@@ -5,7 +5,10 @@ import albumsActions from '../../store/actions/albumsActions';
 import photosActions from '../../store/actions/photosActions';
 import { getAlbumsWithPhotos } from '../../store/reducers/albumsReducer';
 
-const mapStateToProps = state => ({ albumWithPhotos: getAlbumsWithPhotos(state) });
+const mapStateToProps = state => ({
+  albumWithPhotos: getAlbumsWithPhotos(state),
+  loading: state.albumsReducer.loading || state.photosReducer.loading,
+});
 
 const mapDispatchToProps = dispatch => ({
   loadAlbums: () => dispatch(albumsActions.loadAlbums),
