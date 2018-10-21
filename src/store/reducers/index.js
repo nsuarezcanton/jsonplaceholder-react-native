@@ -1,7 +1,9 @@
-import counter from './counterReducer';
+import albumsReducer from './albumsReducer';
+import photosReducer from './photosReducer';
 
 const appReducer = {
-  counter,
+  albumsReducer,
+  photosReducer,
 };
 
 export default appReducer;

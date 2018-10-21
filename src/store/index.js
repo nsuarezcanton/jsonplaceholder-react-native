@@ -3,13 +3,14 @@ import { compose, createStore, applyMiddleware } from 'redux';
 import { persistCombineReducers, persistStore } from 'redux-persist';
 import storage from 'redux-persist/es/storage';
 import thunk from 'redux-thunk';
+
+import Services from '../services/jsonplaceholder';
 import reducers from './reducers';
 
 const config = {
   key: 'root',
   storage,
-  // whitelist:[]
-  blacklist: ['counter'],
+  blacklist: [],
 };
 
 const composeEnhancers =
@@ -19,7 +20,7 @@ const composeEnhancers =
 
 const reducer = persistCombineReducers(config, reducers);
 
-export const middleware = [thunk];
+export const middleware = [thunk.withExtraArgument(Services)];
 
 export default () => {
   const store = composeEnhancers(applyMiddleware(...middleware))(createStore)(reducer);
