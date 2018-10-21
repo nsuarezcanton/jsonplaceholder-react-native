@@ -15,8 +15,9 @@ const styles = StyleSheet.create({
   },
 });
 
-const AlbumList = ({ albumList, onTapItem, onScroll }) => (
+const AlbumList = ({ albumList, onTapItem, onScroll, refreshControl }) => (
   <FlatList
+    refreshControl={refreshControl}
     contentContainerStyle={[styles.contentContainer]}
     data={albumList}
     onScroll={onScroll}
@@ -36,10 +37,12 @@ AlbumList.propTypes = {
   ),
   onTapItem: PropTypes.func.isRequired,
   onScroll: PropTypes.func,
+  refreshControl: PropTypes.node,
 };
 
 AlbumList.defaultProps = {
   onScroll: null,
+  refreshControl: null,
 };
 
 export default AlbumList;
