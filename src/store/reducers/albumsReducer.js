@@ -1,5 +1,4 @@
 import { handleActions } from 'redux-actions';
-import _ from 'lodash';
 import {
   LOAD_ALBUMS_REQUEST,
   LOAD_ALBUMS_SUCCESS,
@@ -32,12 +31,3 @@ export default handleActions(
   },
   initialState,
 );
-
-export const getAlbumsWithPhotos = ({ albumsReducer, photosReducer }) =>
-  _.map(albumsReducer.data, album => {
-    const photosByAlbum = _.groupBy(photosReducer.data, 'albumId');
-    return { ...album, photos: photosByAlbum[album.id] };
-  });
-
-export const getAlbumTitle = ({ albumsReducer }, albumId) =>
-  _.find(albumsReducer.data, album => album.id === albumId).title;

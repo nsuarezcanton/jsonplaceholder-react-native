@@ -1,0 +1,5 @@
+# MainNavigator
+
+- AlbumsPage
+- AlbumPhotosPage
+- PhotoDetailsPage

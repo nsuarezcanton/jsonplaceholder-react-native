@@ -1,5 +1,4 @@
 import { handleActions } from 'redux-actions';
-import _ from 'lodash';
 
 import {
   LOAD_PHOTOS_REQUEST,
@@ -33,9 +32,3 @@ export default handleActions(
   },
   initialState,
 );
-
-export const getPhotosByAlbum = ({ photosReducer }, selectedAlbumId) =>
-  _.groupBy(photosReducer.data, 'albumId')[selectedAlbumId];
-
-export const getPhotoById = ({ photosReducer }, selectedPhotoId) =>
-  _.find(photosReducer.data, photo => photo.id === selectedPhotoId);

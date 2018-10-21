@@ -1,32 +1,64 @@
-# React Native Template MediaMonks
+# JSONPlaceholder
 
-A React Native template designed to quick start projects.
- 
+A demo React Native app to that interacts with the [JSONPlaceholder](https://jsonplaceholder.typicode.com/) API.
+
 ## Features
-- Unit Testing with jest and enzyme.
-- e2e Testing using detox.
-- Make your code pretty with prettier.
-- Control your commits with eslinter and husky.
-- Redux integration and ready to go using asynchronous actions with redux-thunk.
 
+- React Navigation.
+- Redux for state management.
+- `redux-persist` for data persistance.
+- `react-native-i18n` for internationalization.
 
-##  Getting Started
+## Mockup
+
+A quick Sketch mockup of the complete app to make development easier.
+
+![JSONPlaceholder Mockup](readme_assets/JSONPlacelholder_mockup.png)
+
+## Demo
+
+![JSONPlaceholder Demo](/readme_assets/JSONPlaceholder_demo.gif)
+
+## Getting Started
 
 ### Pre-requisites:
+
 Make sure you have the react-native CLI installed.
+
 ```
 npm install -g react-native-cli
 ```
 
 ### Installation:
-- Now using the react-native CLI you can make use of the template command specifying this project.
- 
+
+- Install dependencies:
+
 ```
-react-native init <Project Name> --template mediamonks
+cd jsonplaceholder-react-native && npm install
 ```
-- The react-native template command creates a new package.json file which means we need to run a script to add the additional scripts, detox and lint-staging to the package.json.
+
+- Start the package bundler (optional):
+
 ```
-node scripts/install.js
+react-native start --reset-cache
+```
+
+#### iOS
+
+- To run it on an iOS simulator:
+
+```
+react-native run-ios
+```
+
+You also have the option to run it from XCode by opening `ios/JSONPlaceholder.xcodeproj` and clicking the "play" button.
+
+#### Android
+
+- Ensure that you have an Android emulator running and then run:
+
+```
+react-native run-android
 ```
 
 ## Issues
@@ -36,40 +68,9 @@ node scripts/install.js
 #### iOS
 
 Make sure if you want to make use of detox to follow the [getting started](https://github.com/wix/detox/blob/master/docs/Introduction.GettingStarted.md) and install the prerequisites and dependencies needed.
+
 #### Android
 
 Currently doesn't work out of the box, so there is a little set up needed in the android project itself. So you will need to follow a seperate [getting started](https://github.com/wix/detox/blob/master/docs/Introduction.Android.md) guide in order to setup detox for android.
 
 Make sure to amend the configurations of the detox config appropriately to match the correct emulator you've selected.
-
-
-## Suggestions
-### Seng-generator
-For the ability to generate components quickly make sure to install [seng-generator](https://github.com/mediamonks/seng-generator) cli.
-
-#### Quick start
-Default templates have already been setup, to make generating components a breeze.
-```
-npm i -g seng-generator
-```
-Generate a stateful component.
-```
-sg wizard component {component name}
-```
-Generate a functional component.
-```
-sg wizard functional-component {component name}
-```
-### Debugging
-For the best debugging experience make sure to install [react-native-debugger](https://github.com/jhen0409/react-native-debugger).
-
-## LICENSE
-
-[MIT](./LICENSE) © MediaMonks
-
-
-
-
-
-
-
