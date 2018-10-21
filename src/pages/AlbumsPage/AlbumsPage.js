@@ -12,17 +12,49 @@ const styles = StyleSheet.create({
   },
 });
 
-const AlbumsPage = ({ navigation: { navigate } }) => (
-  <SafeAreaView style={[styles.container]}>
-    <NavigationBar title="Welcome!" />
-    <AlbumList onTapItem={() => navigate('AlbumPhotos')} />
-  </SafeAreaView>
-);
+class AlbumsPage extends React.Component {
+  componentDidMount() {
+    const { loadAlbums, loadPhotos } = this.props;
+    loadAlbums();
+    loadPhotos();
+  }
+  render() {
+    const {
+      navigation: { navigate },
+      albumWithPhotos,
+    } = this.props;
+    return (
+      <SafeAreaView style={[styles.container]}>
+        <NavigationBar title="Welcome!" />
+        <AlbumList
+          onTapItem={albumId => navigate('AlbumPhotos', { albumId })}
+          albumList={albumWithPhotos}
+        />
+      </SafeAreaView>
+    );
+  }
+}
 
 AlbumsPage.propTypes = {
   navigation: PropTypes.shape({
     navigate: PropTypes.func.isRequired,
   }).isRequired,
+  loadAlbums: PropTypes.func.isRequired,
+  loadPhotos: PropTypes.func.isRequired,
+  albumWithPhotos: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.number.isRequired,
+      title: PropTypes.string.isRequired,
+      photos: PropTypes.arrayOf(
+        PropTypes.shape({
+          albumId: PropTypes.number.isRequired,
+          id: PropTypes.number.isRequired,
+          thumbnailUrl: PropTypes.string.isRequired,
+          url: PropTypes.string.isRequired,
+        }).isRequired,
+      ).isRequired,
+    }),
+  ).isRequired,
 };
 
 export default AlbumsPage;

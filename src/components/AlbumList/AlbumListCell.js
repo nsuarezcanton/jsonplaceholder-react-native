@@ -22,24 +22,23 @@ const styles = StyleSheet.create({
     color: BaseStyles.COLOR_BLACK,
     fontSize: TextStyles.SIZE_MEDIUM,
     fontFamily: TextStyles.FAMILY_PRIMARY_REGULAR,
-    height: BaseStyles.SPACING_BASE,
     marginTop: BaseStyles.SPACING_TINY,
   },
 });
 
-const AlbumListCell = ({ item: { id, title }, onTap }) => (
+const AlbumListCell = ({ item: { id, title, photos }, onTap }) => (
   <TouchableOpacity onPress={() => onTap(id)}>
     <View style={[styles.container]}>
       <View style={[styles.photosContainer]}>
-        <Image style={[styles.photo]} source={{ uri: 'https://via.placeholder.com/150/92c952' }} />
+        <Image style={[styles.photo]} source={{ uri: photos[0].thumbnailUrl }} />
         <Image
           style={[styles.photo]}
           source={{
-            uri: 'https://via.placeholder.com/150/9c184f',
+            uri: photos[1].thumbnailUrl,
           }}
         />
       </View>
-      <Icon name="chevron-right" size={32} color="#000000" />
+      <Icon name="chevron-right" size={BaseStyles.SPACING_LARGE} color={BaseStyles.COLOR_BLACK} />
     </View>
     <Text style={[styles.label]}>{title}</Text>
   </TouchableOpacity>

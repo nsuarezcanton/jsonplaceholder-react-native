@@ -23,20 +23,15 @@ const styles = StyleSheet.create({
   label: {
     fontSize: TextStyles.SIZE_MEDIUM,
     fontFamily: TextStyles.FAMILY_PRIMARY_REGULAR,
-    height: BaseStyles.SPACING_BASE,
     marginTop: BaseStyles.SPACING_TINY,
   },
 });
 
-const PhotoListCell = ({ item: { id, title }, onTap }) => (
+const PhotoListCell = ({ item: { id, title, url }, onTap }) => (
   <TouchableOpacity onPress={() => onTap(id)}>
     <View style={[styles.container]}>
       <View style={[styles.photoContainer]}>
-        <Image
-          style={[styles.photo]}
-          source={{ uri: 'https://via.placeholder.com/600/b0f7cc' }}
-          resizeMode="cover"
-        />
+        <Image style={[styles.photo]} source={{ uri: url }} resizeMode="cover" />
       </View>
       <Icon name="chevron-right" size={BaseStyles.SPACING_LARGE} color={BaseStyles.COLOR_BLACK} />
     </View>
