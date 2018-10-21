@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { SafeAreaView, StyleSheet, Animated, RefreshControl } from 'react-native';
 import { isEmpty } from 'lodash';
 
+import { getLocalizedString } from '../../utils/localizedUtils';
 import { AlbumList, NavigationBar } from '../../components';
 import { BaseStyles } from '../../styles';
 
@@ -43,7 +44,7 @@ class AlbumsPage extends React.PureComponent {
     const contentReady = !isEmpty(albumWithPhotos) && !loading;
     return (
       <SafeAreaView style={[styles.container]}>
-        <NavigationBar title="Welcome!" scrollY={scrollY} />
+        <NavigationBar title={getLocalizedString('greeting')} scrollY={scrollY} />
         {contentReady && (
           <AlbumList
             refreshControl={
