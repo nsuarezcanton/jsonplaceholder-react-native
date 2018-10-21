@@ -1,8 +1,9 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SafeAreaView, StyleSheet } from 'react-native';
-import { AlbumList, NavigationBar } from '../../components';
+import { SafeAreaView, StyleSheet, Animated } from 'react-native';
+import { isEmpty } from 'lodash';
 
+import { AlbumList, NavigationBar } from '../../components';
 import { BaseStyles } from '../../styles';
 
 const styles = StyleSheet.create({
@@ -12,7 +13,14 @@ const styles = StyleSheet.create({
   },
 });
 
-class AlbumsPage extends React.Component {
+class AlbumsPage extends React.PureComponent {
+  constructor() {
+    super();
+    this.state = {
+      scrollY: new Animated.Value(0),
+    };
+  }
+
   componentDidMount() {
     const { loadAlbums, loadPhotos } = this.props;
     loadAlbums();
@@ -22,14 +30,26 @@ class AlbumsPage extends React.Component {
     const {
       navigation: { navigate },
       albumWithPhotos,
+      loading,
     } = this.props;
+    const { scrollY } = this.state;
     return (
       <SafeAreaView style={[styles.container]}>
-        <NavigationBar title="Welcome!" />
-        <AlbumList
-          onTapItem={albumId => navigate('AlbumPhotos', { albumId })}
-          albumList={albumWithPhotos}
-        />
+        <NavigationBar title="Welcome!" scrollY={scrollY} />
+        {!isEmpty(albumWithPhotos) &&
+          !loading && (
+            <AlbumList
+              onScroll={Animated.event([
+                {
+                  nativeEvent: {
+                    contentOffset: { y: this.state.scrollY },
+                  },
+                },
+              ])}
+              onTapItem={albumId => navigate('AlbumPhotos', { albumId })}
+              albumList={albumWithPhotos}
+            />
+          )}
       </SafeAreaView>
     );
   }
@@ -55,6 +75,7 @@ AlbumsPage.propTypes = {
       ).isRequired,
     }),
   ).isRequired,
+  loading: PropTypes.bool.isRequired,
 };
 
 export default AlbumsPage;

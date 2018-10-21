@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { SafeAreaView, Text, StyleSheet, View, Image } from 'react-native';
+import { SafeAreaView, StyleSheet, View, Image } from 'react-native';
 
 import { NavigationBar } from '../../components';
 import { BaseStyles, TextStyles } from '../../styles';
@@ -26,10 +26,9 @@ const styles = StyleSheet.create({
 
 const PhotoDetailsPage = ({ navigation: { goBack }, photo: { title, url } }) => (
   <SafeAreaView style={[styles.container]}>
-    <NavigationBar onTap={() => goBack()} />
+    <NavigationBar title={title} onTap={() => goBack()} />
     <View style={[styles.content]}>
       <Image style={[styles.photo]} source={{ uri: url }} resizeMode="cover" />
-      <Text style={[styles.label]}>{title}</Text>
     </View>
   </SafeAreaView>
 );
