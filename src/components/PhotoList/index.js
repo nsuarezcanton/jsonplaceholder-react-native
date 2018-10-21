@@ -15,10 +15,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const PhotoList = ({ photoList, onTapItem }) => (
+const PhotoList = ({ photoList, onTapItem, onScroll }) => (
   <FlatList
     contentContainerStyle={[styles.contentContainer]}
     data={photoList}
+    onScroll={onScroll}
+    scrollEventThrottle={16}
     ItemSeparatorComponent={() => <View style={[styles.separator]} />}
     keyExtractor={cellData => String(cellData.id)}
     renderItem={cellData => <PhotoListCell {...cellData} onTap={onTapItem} />}
@@ -33,6 +35,11 @@ PhotoList.propTypes = {
     }),
   ),
   onTapItem: PropTypes.func.isRequired,
+  onScroll: PropTypes.func,
+};
+
+PhotoList.defaultProps = {
+  onScroll: null,
 };
 
 export default PhotoList;

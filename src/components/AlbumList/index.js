@@ -15,10 +15,12 @@ const styles = StyleSheet.create({
   },
 });
 
-const AlbumList = ({ albumList, onTapItem }) => (
+const AlbumList = ({ albumList, onTapItem, onScroll }) => (
   <FlatList
     contentContainerStyle={[styles.contentContainer]}
     data={albumList}
+    onScroll={onScroll}
+    scrollEventThrottle={16}
     ItemSeparatorComponent={() => <View style={[styles.separator]} />}
     keyExtractor={cellData => String(cellData.id)}
     renderItem={cellData => <AlbumListCell {...cellData} onTap={onTapItem} />}
@@ -33,6 +35,11 @@ AlbumList.propTypes = {
     }),
   ),
   onTapItem: PropTypes.func.isRequired,
+  onScroll: PropTypes.func,
+};
+
+AlbumList.defaultProps = {
+  onScroll: null,
 };
 
 export default AlbumList;
