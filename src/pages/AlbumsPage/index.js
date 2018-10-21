@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import AlbumsPage from './AlbumsPage';
 import albumsActions from '../../store/actions/albumsActions';
 import photosActions from '../../store/actions/photosActions';
-import { getAlbumsWithPhotos } from '../../store/reducers/albumsReducer';
+import { getAlbumsWithPhotos } from '../../store/selectors';
 
 const mapStateToProps = state => ({
   albumWithPhotos: getAlbumsWithPhotos(state),

@@ -1,6 +1,6 @@
 import { connect } from 'react-redux';
 import PhotoDetailsPage from './PhotoDetailsPage';
-import { getPhotoById } from '../../store/reducers/photosReducer';
+import { getPhotoById } from '../../store/selectors';
 
 const mapStateToProps = (
   state,

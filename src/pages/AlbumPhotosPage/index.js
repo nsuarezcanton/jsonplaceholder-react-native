@@ -1,7 +1,6 @@
 import { connect } from 'react-redux';
 import AlbumPhotosPage from './AlbumPhotosPage';
-import { getPhotosByAlbum } from '../../store/reducers/photosReducer';
-import { getAlbumTitle } from '../../store/reducers/albumsReducer';
+import { getPhotosByAlbum, getAlbumTitle } from '../../store/selectors';
 
 const mapStateToProps = (
   state,
