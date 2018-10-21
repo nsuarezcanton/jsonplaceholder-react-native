@@ -8,6 +8,7 @@ import { getAlbumsWithPhotos } from '../../store/reducers/albumsReducer';
 const mapStateToProps = state => ({
   albumWithPhotos: getAlbumsWithPhotos(state),
   loading: state.albumsReducer.loading || state.photosReducer.loading,
+  rehydrated: state._persist.rehydrated,
 });
 
 const mapDispatchToProps = dispatch => ({
