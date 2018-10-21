@@ -17,7 +17,9 @@ A quick Sketch mockup of the complete app to make development easier.
 
 ## Demo
 
-<img src="/readme_assets/JSONPlaceholder_demo.gif" alt="JSONPlaceholder Demo" width="300"/>
+<img src="/readme_assets/JSONPlaceholder_demo_1.gif" alt="JSONPlaceholder Demo (iOS)" width="300"/>
+
+<img src="/readme_assets/JSONPlaceholder_demo.gif" alt="JSONPlaceholder Demo (Android)" width="300"/>
 
 ## Getting Started
 
